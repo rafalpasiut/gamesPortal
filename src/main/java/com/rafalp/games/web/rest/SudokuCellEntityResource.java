@@ -3,12 +3,17 @@ package com.rafalp.games.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.rafalp.games.domain.SudokuCellEntity;
 
+import com.rafalp.games.games.sudoku.board.SudokuBoardWebDTO;
+import com.rafalp.games.games.sudoku.board.SudokuMapper;
+import com.rafalp.games.games.sudoku.generator.SudokuGenerator;
 import com.rafalp.games.repository.SudokuCellEntityRepository;
+import com.rafalp.games.repository.SudokuRepositoryController;
 import com.rafalp.games.web.rest.errors.BadRequestAlertException;
 import com.rafalp.games.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,9 +35,15 @@ public class SudokuCellEntityResource {
     private static final String ENTITY_NAME = "sudokuCellEntity";
 
     private final SudokuCellEntityRepository sudokuCellEntityRepository;
+    private SudokuGenerator sudokuGenerator;
+    private SudokuMapper sudokuMapper;
+    private SudokuRepositoryController repositoryController;
 
     public SudokuCellEntityResource(SudokuCellEntityRepository sudokuCellEntityRepository) {
         this.sudokuCellEntityRepository = sudokuCellEntityRepository;
+        this.sudokuGenerator = new SudokuGenerator();
+        this.sudokuMapper = new SudokuMapper();
+        this.repositoryController = new SudokuRepositoryController();
     }
 
     /**
@@ -115,5 +126,28 @@ public class SudokuCellEntityResource {
         log.debug("REST request to delete SudokuCellEntity : {}", id);
         sudokuCellEntityRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping(value = "/sudokuGetSaved")
+    public SudokuBoardWebDTO initializeSudokuGame(@RequestParam Long userId) {
+        List<SudokuCellEntity> cells = repositoryController.readSudokuCellEntities(userId);
+        if(cells.isEmpty()){
+            sudokuGenerator.nextBoard(50);
+            return sudokuGenerator.getSudokuDTO();
+        }else{
+            return sudokuMapper.mapCellsEntitiesToWebBoardDto(cells);
+        }
+    }
+
+    @GetMapping(value = "/sudokuNew")
+    public SudokuBoardWebDTO generateNewGame(@RequestParam Integer level) {
+        sudokuGenerator.nextBoard(level);
+        return sudokuGenerator.getSudokuDTO();
+    }
+
+    @PutMapping(value = "/sudokuSaveSudoku", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public SudokuBoardWebDTO saveSudoku(@RequestBody SudokuBoardWebDTO sudoku) {
+        repositoryController.saveSudoku(sudokuMapper.sudokuWebToSudokuCellEntity(sudoku));
+        return sudoku;
     }
 }
