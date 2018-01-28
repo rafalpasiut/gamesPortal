@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="resultBoard">
+        {{winCount}} : {{looseCount}}
+    </div>
+</div>
+<div class="row">
+    <div class="middle">
+        <div class="cell">
+            <div class="selection player" [ngSwitch]="playerChampion">
+                <img *ngSwitchCase="'Rock'" src = "../../../content/images/Rock.png" class="championImage" alt="Rock"/>
+                <img *ngSwitchCase="'Paper'" src = "../../../content/images/Paper.png" class="championImage" alt="Paper"/>
+                <img *ngSwitchCase="'Scissors'" src = "../../../content/images/Scissors.png" class="championImage" alt="Scisors"/>
+                <img *ngSwitchCase="'Spock'" src = "../../../content/images/Spock.png" class="championImage" alt="Spock"/>
+                <img *ngSwitchCase="'Lizard'" src = "../../../content/images/Lizard.png" class="championImage" alt="Lizard"/>
+            </div>
+        </div>
+        <div class="cell">
+                <div ngClass="fightResult {{fightResultStyle}}">
+                    {{fightResultText}}
+                </div>
+                <div class="fightResultMessage">
+                    {{fightMessage}}
+                </div>
+        </div>
+        <div class="cell">
+            <div class="selection opponent" [ngSwitch]="opponentChampion">
+                <img *ngSwitchCase="'Rock'" src = "../../../content/images/Rock.png" class="championImage" alt="Rock"/>
+                <img *ngSwitchCase="'Paper'" src = "../../../content/images/Paper.png" class="championImage" alt="Paper"/>
+                <img *ngSwitchCase="'Scissors'" src = "../../../content/images/Scissors.png" class="championImage" alt="Scisors"/>
+                <img *ngSwitchCase="'Spock'" src = "../../../content/images/Spock.png" class="championImage" alt="Spock"/>
+                <img *ngSwitchCase="'Lizard'" src = "../../../content/images/Lizard.png" class="championImage" alt="Lizard"/>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="championOptions">
+        <button type="submit" class="btn-lg btn-dark btn btn-primary championButton" (click)="fight('Rock')">
+            Rock
+        </button>
+        <button type="submit" class="btn-lg btn-dark btn btn-primary championButton" (click)="fight('Paper')">
+            Paper
+        </button>
+        <button type="submit" class="btn-lg btn-dark btn btn-primary championButton" (click)="fight('Scissors')">
+            Scissors
+        </button>
+        <button type="submit" class="btn-lg btn-dark btn btn-primary championButton" (click)="fight('Spock')">
+            Spock
+        </button>
+        <button type="submit" class="btn-lg btn-dark btn btn-primary championButton" (click)="fight('Lizard')">
+            Lizard
+        </button>
+    </div>
+</div>

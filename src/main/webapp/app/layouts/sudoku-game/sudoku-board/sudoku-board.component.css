@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+}
+
+div {
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.sudokuBorders {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    float: none;
+    border: 10px solid gray;
+    background-color: transparent;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.outer-square {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 90%;
+    height: 90%;
+    background-color: #ccc;
+    margin: 5%;
+    display: -webkit-flex;
+    -webkit-flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell {
+    line-height: 99%;
+    font-size: 50px;
+    min-width: 50px;
+    font-weight: bold;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    background: rgba(248,244,255,0.35);
+    border: solid grey 1px;
+    margin: 0;
+}
+
+.okCell{
+    color: #11da2a;
+}
+
+.wrongCell{
+    color: #da0d12;
+}
+
+.draftCell{
+    color: black;
+}
+
+.solutionCell{
+    color: #2d4373;
+}
+
+.right-border-cell{
+    border-right: solid grey 3px;
+}
+
+.bottom-border-cell{
+    border-bottom: solid grey 3px;
+}
+
+.cell:hover {
+    background: gray;
+}
+
+[contenteditable="true"]:hover > style {
+    display: block;
+    font-size: .75em;
+    color: blue;
+    font-family: courier, sans-serif;
+    background: #fff;
+    line-height: 1.5;
+    position: relative;
+    right: -36em;
+    top: -2em;
+}

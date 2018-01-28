@@ -10,17 +10,65 @@ Main page styles
     background-size: contain;
 }
 
+.gameSelectionButton {
+    border: 0;
+    background: transparent;
+    outline: none;
+}
+
+.gameSelectionButton:hover {
+    background: #e0ded5;
+}
+
+.welcomeScreen {
+
+}
+
+.gameContainer {
+    background: white;
+    min-height: 560px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+
+    width: 100%;
+}
+@media all and (min-width: 1000px) {
+    .solidLeftBorder {
+        border-left: solid black 5px;
+    }
+}
+
+.streacher{
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0;
+}
+.gameButton{
+    margin: 10px 0px 10px 0px;
+    background-color: #6078c1;
+    width: 100%;
+}
+
+.gameMenu{
+    background: transparent;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.row{
+    display: flex;
+}
+
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
-@media
-only screen and (-webkit-min-device-pixel-ratio: 2),
-only screen and (   min--moz-device-pixel-ratio: 2),
-only screen and (     -o-min-device-pixel-ratio: 2/1),
-only screen and (        min-device-pixel-ratio: 2),
-only screen and (                min-resolution: 192dpi),
-only screen and (                min-resolution: 2dppx) {
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (   min--moz-device-pixel-ratio: 2), only screen and (     -o-min-device-pixel-ratio: 2/1), only screen and (        min-device-pixel-ratio: 2), only screen and (                min-resolution: 192dpi), only screen and (                min-resolution: 2dppx) {
     .hipster {
         background: url("../../content/images/hipster2x.png") no-repeat center top;
         background-size: contain;
     }
 }
-

@@ -1,0 +1,137 @@
+.resultBoard {
+    font-size: 5em;
+    font-weight: 500;
+    color: black;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.fightResult {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 3em;
+    height: 30%;
+    font-weight: 600;
+}
+
+.fightResult.fightWin {
+    color: #1f811f;
+}
+
+.fightResult.fightLost {
+    color: #da0d12;
+}
+
+.fightResult.fightTie {
+    color: #4b6d92;
+}
+
+.fightResult.fightNone {
+    border-color: transparent;
+    color: transparent;
+}
+
+.fightResultMessage {
+    font-size: 2em;
+    font-weight: 200;
+    color: Black;
+    margin: 0 auto;
+    height: 70%;
+    text-align: center;
+}
+
+.selection {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.selection.player {
+}
+
+.selection.opponent {
+}
+
+.championOptions {
+    margin: auto;
+    align-content: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+@media all and (max-width: 800px) {
+    .championOptions {
+        display: flex;
+        flex-direction: column;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}
+
+.championButton {
+    font-size: 1.5em;
+    min-width: 150px;
+    margin: 5px;
+}
+
+.border {
+    border: solid black 2px;
+}
+
+.row {
+    text-align: center;
+    width: 100%;
+}
+
+.cell {
+    display: inline-block;
+    width: 30%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.middle {
+    display: inline-block;
+    margin: 0 auto;
+    width: 100%;
+    min-height: 300px;
+}
+
+.championImage {
+    width: 250px;
+    overflow: hidden;
+}
+
+@media all and (max-width: 1200px) {
+
+    .championImage {
+        width: 200px;
+    }
+
+    @media all and (max-width: 900px) {
+        .middle {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            text-align: center;
+        }
+
+        .cell {
+            width: 100%;
+        }
+
+        .championImage {
+            width: 125px;
+        }
+
+        .selection {
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+    }
+}
+
+
+

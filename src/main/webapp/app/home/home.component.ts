@@ -15,6 +15,7 @@ import { Account, LoginModalService, Principal } from '../shared';
 export class HomeComponent implements OnInit {
     account: Account;
     modalRef: NgbModalRef;
+    selectedGame: string;
 
     constructor(
         private principal: Principal,
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
             this.account = account;
         });
         this.registerAuthenticationSuccess();
+        this.selectedGame = 'none';
     }
 
     registerAuthenticationSuccess() {
@@ -44,5 +46,10 @@ export class HomeComponent implements OnInit {
 
     login() {
         this.modalRef = this.loginModalService.open();
+    }
+
+    selectGame(selector) {
+        this.selectedGame = selector;
+        console.log(selector);
     }
 }
