@@ -13,6 +13,7 @@ import com.rafalp.games.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,13 +38,13 @@ public class SudokuCellEntityResource {
     private final SudokuCellEntityRepository sudokuCellEntityRepository;
     private SudokuGenerator sudokuGenerator;
     private SudokuMapper sudokuMapper;
+    @Autowired
     private SudokuRepositoryController repositoryController;
 
     public SudokuCellEntityResource(SudokuCellEntityRepository sudokuCellEntityRepository) {
         this.sudokuCellEntityRepository = sudokuCellEntityRepository;
         this.sudokuGenerator = new SudokuGenerator();
         this.sudokuMapper = new SudokuMapper();
-        this.repositoryController = new SudokuRepositoryController();
     }
 
     /**
