@@ -1,0 +1,13 @@
+// JDL definition for application 'Games' generated with command 'jhipster export-jdl'
+
+entity SudokuCellEntity
+{
+      id Long,
+      userId Long,
+      value Integer,
+      solution Integer,
+      rowNumber Integer,
+      columnNumber Integer,
+      draftNumber Boolean,
+}
+

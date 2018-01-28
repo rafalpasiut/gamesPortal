@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "userId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "value",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "solution",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rowNumber",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "columnNumber",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "draftNumber",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20180128112052",
+    "entityTableName": "sudoku_cell_entity",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}
