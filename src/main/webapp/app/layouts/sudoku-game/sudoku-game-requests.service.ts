@@ -26,14 +26,12 @@ export class SudokuGameRequestsService {
     getSavedSudoku(): Promise<Observable<SudokuGenResponse>> {
         return this.getUserId().then((user) => {
             let userId: number;
-            if (user === null) {
+            if (user === null || user === '') {
                 userId = -1;
             } else {
                 userId = user.id;
             }
             return this.http.get<SudokuGenResponse>(SERVER_API_URL + '/api/sudokuGetSaved?userId=' + userId).map((data) => {
-                console.log("GET SAVED");
-                console.log(data);
                 return data;
             });
         });
