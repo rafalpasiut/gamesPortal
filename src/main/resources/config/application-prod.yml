@@ -43,8 +43,8 @@ spring:
     mail:
         host: smtp.gmail.com
         port: 587
-        username: logicgamesportal@gmail.com  #Replace this field with your Gmail username.
-        password: L0g1cG4m3P0rt4l           #Replace this field with your Gmail password.
+        username: ${GAMES_MAIL}  #Replace this field with your Gmail username.
+        password: ${GAMES_MAIL_PASSWORD}
         protocol: smtp
         tls: true
         properties.mail.smtp:
