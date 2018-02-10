@@ -61,6 +61,7 @@ public class GamesPortalApp {
      * @throws UnknownHostException if the local host name could not be resolved into an address
      */
     public static void main(String[] args) throws UnknownHostException {
+
         SpringApplication app = new SpringApplication(GamesPortalApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();

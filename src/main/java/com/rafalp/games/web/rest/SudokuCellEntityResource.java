@@ -11,6 +11,7 @@ import com.rafalp.games.repository.SudokuRepositoryController;
 import com.rafalp.games.web.rest.errors.BadRequestAlertException;
 import com.rafalp.games.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.swagger.annotations.Scope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +39,13 @@ public class SudokuCellEntityResource {
     private final SudokuCellEntityRepository sudokuCellEntityRepository;
     private SudokuGenerator sudokuGenerator;
     private SudokuMapper sudokuMapper;
-    @Autowired
     private SudokuRepositoryController repositoryController;
 
-    public SudokuCellEntityResource(SudokuCellEntityRepository sudokuCellEntityRepository) {
+    @Autowired
+    public SudokuCellEntityResource(SudokuCellEntityRepository sudokuCellEntityRepository, SudokuRepositoryController repositoryController, SudokuGenerator sudokuGenerator) {
         this.sudokuCellEntityRepository = sudokuCellEntityRepository;
-        this.sudokuGenerator = new SudokuGenerator();
+        this.repositoryController = repositoryController;
+        this.sudokuGenerator = sudokuGenerator;
         this.sudokuMapper = new SudokuMapper();
     }
 

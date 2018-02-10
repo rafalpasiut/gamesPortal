@@ -15,7 +15,8 @@ public class RPSController {
     WebAIRPSGame webAIRPSGame;
 
     @RequestMapping(method = RequestMethod.GET, value = "/rpsFightWithAI")
-    public RPSFightResult fight(@RequestParam String champion) throws CantCreateChampionException{
+    public RPSFightResult fight(@RequestParam String champion) throws CantCreateChampionException {
+
         return webAIRPSGame.play(champion);
     }
 }
