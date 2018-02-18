@@ -45,6 +45,7 @@ public class CacheConfiguration {
             cm.createCache(com.rafalp.games.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(com.rafalp.games.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
             cm.createCache(com.rafalp.games.domain.SudokuCellEntity.class.getName(), jcacheConfiguration);
+            cm.createCache(com.rafalp.games.domain.RPSGames.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

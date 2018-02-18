@@ -9,5 +9,24 @@ entity SudokuCellEntity
       rowNumber Integer,
       columnNumber Integer,
       draftNumber Boolean,
+      
+}
+
+entity RPSGames
+{
+	id Long,
+	player1 String,
+    player1Champion String,
+    player1Count Integer,
+    player1IsPlayed Boolean,
+    player2 String,
+    player2Champion String,
+    player2Count Integer,
+    player2IsPlayed Boolean,
+    isAI Boolean,
+    gameStartTime Instant,
+    lastActionTime Instant,
+    isGameFinished Boolean,
+    isRoundFinished Boolean,
 }
 

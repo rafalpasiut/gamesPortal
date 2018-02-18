@@ -1,8 +1,9 @@
 package com.rafalp.games.web.rest;
 
 import com.rafalp.games.games.rps.RPSFightResult;
-import com.rafalp.games.games.rps.WebAIRPSGame;
+import com.rafalp.games.games.rps.WebRPSGame;
 import com.rafalp.games.games.rps.exception.CantCreateChampionException;
+import com.rafalp.games.service.dto.RPSGame.PlayerMoveDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,11 +13,16 @@ import org.springframework.web.bind.annotation.*;
 public class RPSController {
 
     @Autowired
-    WebAIRPSGame webAIRPSGame;
+    WebRPSGame webRPSGame;
 
     @RequestMapping(method = RequestMethod.GET, value = "/rpsFightWithAI")
     public RPSFightResult fight(@RequestParam String champion) throws CantCreateChampionException {
 
-        return webAIRPSGame.play(champion);
+        return webRPSGame.play(champion);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/rpsFightMulti")
+    public RPSFightResult fight(@RequestBody PlayerMoveDto playerData) throws CantCreateChampionException {
+        return null;
     }
 }

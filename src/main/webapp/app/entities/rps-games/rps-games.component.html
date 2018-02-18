@@ -1,0 +1,80 @@
+<div>
+    <h2>
+        <span>RPS Games</span>
+        <button class="btn btn-primary float-right jh-create-entity create-rps-games" [routerLink]="['/', { outlets: { popup: ['rps-games-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new RPS Games
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="rPSGames">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Player 1</span></th>
+            <th><span>Player 1 Champion</span></th>
+            <th><span>Player 1 Count</span></th>
+            <th><span>Player 1 Is Played</span></th>
+            <th><span>Player 2</span></th>
+            <th><span>Player 2 Champion</span></th>
+            <th><span>Player 2 Count</span></th>
+            <th><span>Player 2 Is Played</span></th>
+            <th><span>Is AI</span></th>
+            <th><span>Game Start Time</span></th>
+            <th><span>Last Action Time</span></th>
+            <th><span>Is Game Finished</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let rPSGames of rPSGames ;trackBy: trackId">
+                <td><a [routerLink]="['../rps-games', rPSGames.id ]">{{rPSGames.id}}</a></td>
+                <td>{{rPSGames.player1}}</td>
+                <td>{{rPSGames.player1Champion}}</td>
+                <td>{{rPSGames.player1Count}}</td>
+                <td>{{rPSGames.player1IsPlayed}}</td>
+                <td>{{rPSGames.player2}}</td>
+                <td>{{rPSGames.player2Champion}}</td>
+                <td>{{rPSGames.player2Count}}</td>
+                <td>{{rPSGames.player2IsPlayed}}</td>
+                <td>{{rPSGames.isAI}}</td>
+                <td>{{rPSGames.gameStartTime | date:'medium'}}</td>
+                <td>{{rPSGames.lastActionTime | date:'medium'}}</td>
+                <td>{{rPSGames.isGameFinished}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../rps-games', rPSGames.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'rps-games/'+ rPSGames.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'rps-games/'+ rPSGames.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

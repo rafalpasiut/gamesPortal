@@ -3,7 +3,9 @@ package com.rafalp.games.web.rest;
 import com.rafalp.games.GamesPortalApp;
 
 import com.rafalp.games.domain.SudokuCellEntity;
+import com.rafalp.games.games.sudoku.generator.SudokuGenerator;
 import com.rafalp.games.repository.SudokuCellEntityRepository;
+import com.rafalp.games.repository.SudokuRepositoryController;
 import com.rafalp.games.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -60,6 +62,12 @@ public class SudokuCellEntityResourceIntTest {
     private SudokuCellEntityRepository sudokuCellEntityRepository;
 
     @Autowired
+    private SudokuRepositoryController sudokuRepositoryController;
+
+    @Autowired
+    private SudokuGenerator sudokuGenerator;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -78,7 +86,7 @@ public class SudokuCellEntityResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final SudokuCellEntityResource sudokuCellEntityResource = new SudokuCellEntityResource(sudokuCellEntityRepository);
+        final SudokuCellEntityResource sudokuCellEntityResource = new SudokuCellEntityResource(sudokuCellEntityRepository, sudokuRepositoryController, sudokuGenerator);
         this.restSudokuCellEntityMockMvc = MockMvcBuilders.standaloneSetup(sudokuCellEntityResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

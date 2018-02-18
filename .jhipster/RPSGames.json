@@ -1,0 +1,60 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "player1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "player1Champion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "player1Count",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "player1IsPlayed",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "player2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "player2Champion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "player2Count",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "player2IsPlayed",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "isAI",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "gameStartTime",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "lastActionTime",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "isGameFinished",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20180218174349",
+    "entityTableName": "rps_games",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,70 @@
+
+<div *ngIf="rPSGames">
+    <h2><span>RPS Games</span> {{rPSGames.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Player 1</span></dt>
+        <dd>
+            <span>{{rPSGames.player1}}</span>
+        </dd>
+        <dt><span>Player 1 Champion</span></dt>
+        <dd>
+            <span>{{rPSGames.player1Champion}}</span>
+        </dd>
+        <dt><span>Player 1 Count</span></dt>
+        <dd>
+            <span>{{rPSGames.player1Count}}</span>
+        </dd>
+        <dt><span>Player 1 Is Played</span></dt>
+        <dd>
+            <span>{{rPSGames.player1IsPlayed}}</span>
+        </dd>
+        <dt><span>Player 2</span></dt>
+        <dd>
+            <span>{{rPSGames.player2}}</span>
+        </dd>
+        <dt><span>Player 2 Champion</span></dt>
+        <dd>
+            <span>{{rPSGames.player2Champion}}</span>
+        </dd>
+        <dt><span>Player 2 Count</span></dt>
+        <dd>
+            <span>{{rPSGames.player2Count}}</span>
+        </dd>
+        <dt><span>Player 2 Is Played</span></dt>
+        <dd>
+            <span>{{rPSGames.player2IsPlayed}}</span>
+        </dd>
+        <dt><span>Is AI</span></dt>
+        <dd>
+            <span>{{rPSGames.isAI}}</span>
+        </dd>
+        <dt><span>Game Start Time</span></dt>
+        <dd>
+            <span>{{rPSGames.gameStartTime | date:'medium'}}</span>
+        </dd>
+        <dt><span>Last Action Time</span></dt>
+        <dd>
+            <span>{{rPSGames.lastActionTime | date:'medium'}}</span>
+        </dd>
+        <dt><span>Is Game Finished</span></dt>
+        <dd>
+            <span>{{rPSGames.isGameFinished}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'rps-games/'+ rPSGames.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

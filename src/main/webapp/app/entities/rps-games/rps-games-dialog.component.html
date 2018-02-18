@@ -1,0 +1,89 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myRPSGamesLabel">Create or edit a RPS Games</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!rPSGames.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="rPSGames.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_player1">Player 1</label>
+            <input type="text" class="form-control" name="player1" id="field_player1"
+                [(ngModel)]="rPSGames.player1" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_player1Champion">Player 1 Champion</label>
+            <input type="text" class="form-control" name="player1Champion" id="field_player1Champion"
+                [(ngModel)]="rPSGames.player1Champion" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_player1Count">Player 1 Count</label>
+            <input type="number" class="form-control" name="player1Count" id="field_player1Count"
+                [(ngModel)]="rPSGames.player1Count" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_player1IsPlayed">Player 1 Is Played</label>
+            <input type="checkbox" class="form-control" name="player1IsPlayed" id="field_player1IsPlayed"
+                [(ngModel)]="rPSGames.player1IsPlayed" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_player2">Player 2</label>
+            <input type="text" class="form-control" name="player2" id="field_player2"
+                [(ngModel)]="rPSGames.player2" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_player2Champion">Player 2 Champion</label>
+            <input type="text" class="form-control" name="player2Champion" id="field_player2Champion"
+                [(ngModel)]="rPSGames.player2Champion" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_player2Count">Player 2 Count</label>
+            <input type="number" class="form-control" name="player2Count" id="field_player2Count"
+                [(ngModel)]="rPSGames.player2Count" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_player2IsPlayed">Player 2 Is Played</label>
+            <input type="checkbox" class="form-control" name="player2IsPlayed" id="field_player2IsPlayed"
+                [(ngModel)]="rPSGames.player2IsPlayed" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_isAI">Is AI</label>
+            <input type="checkbox" class="form-control" name="isAI" id="field_isAI"
+                [(ngModel)]="rPSGames.isAI" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_gameStartTime">Game Start Time</label>
+            <div class="d-flex">
+                <input id="field_gameStartTime" type="datetime-local" class="form-control" name="gameStartTime" [(ngModel)]="rPSGames.gameStartTime"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastActionTime">Last Action Time</label>
+            <div class="d-flex">
+                <input id="field_lastActionTime" type="datetime-local" class="form-control" name="lastActionTime" [(ngModel)]="rPSGames.lastActionTime"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_isGameFinished">Is Game Finished</label>
+            <input type="checkbox" class="form-control" name="isGameFinished" id="field_isGameFinished"
+                [(ngModel)]="rPSGames.isGameFinished" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>
