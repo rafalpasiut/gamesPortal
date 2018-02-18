@@ -76,6 +76,9 @@ public class RPSGamesResourceIntTest {
     private static final Boolean DEFAULT_IS_GAME_FINISHED = false;
     private static final Boolean UPDATED_IS_GAME_FINISHED = true;
 
+    private static final Boolean DEFAULT_IS_ROUND_FINISHED = false;
+    private static final Boolean UPDATED_IS_ROUND_FINISHED = true;
+
     @Autowired
     private RPSGamesRepository rPSGamesRepository;
 
@@ -125,7 +128,8 @@ public class RPSGamesResourceIntTest {
             .isAI(DEFAULT_IS_AI)
             .gameStartTime(DEFAULT_GAME_START_TIME)
             .lastActionTime(DEFAULT_LAST_ACTION_TIME)
-            .isGameFinished(DEFAULT_IS_GAME_FINISHED);
+            .isGameFinished(DEFAULT_IS_GAME_FINISHED)
+            .isRoundFinished(DEFAULT_IS_ROUND_FINISHED);
         return rPSGames;
     }
 
@@ -161,6 +165,7 @@ public class RPSGamesResourceIntTest {
         assertThat(testRPSGames.getGameStartTime()).isEqualTo(DEFAULT_GAME_START_TIME);
         assertThat(testRPSGames.getLastActionTime()).isEqualTo(DEFAULT_LAST_ACTION_TIME);
         assertThat(testRPSGames.isIsGameFinished()).isEqualTo(DEFAULT_IS_GAME_FINISHED);
+        assertThat(testRPSGames.isIsRoundFinished()).isEqualTo(DEFAULT_IS_ROUND_FINISHED);
     }
 
     @Test
@@ -204,7 +209,8 @@ public class RPSGamesResourceIntTest {
             .andExpect(jsonPath("$.[*].isAI").value(hasItem(DEFAULT_IS_AI.booleanValue())))
             .andExpect(jsonPath("$.[*].gameStartTime").value(hasItem(DEFAULT_GAME_START_TIME.toString())))
             .andExpect(jsonPath("$.[*].lastActionTime").value(hasItem(DEFAULT_LAST_ACTION_TIME.toString())))
-            .andExpect(jsonPath("$.[*].isGameFinished").value(hasItem(DEFAULT_IS_GAME_FINISHED.booleanValue())));
+            .andExpect(jsonPath("$.[*].isGameFinished").value(hasItem(DEFAULT_IS_GAME_FINISHED.booleanValue())))
+            .andExpect(jsonPath("$.[*].isRoundFinished").value(hasItem(DEFAULT_IS_ROUND_FINISHED.booleanValue())));
     }
 
     @Test
@@ -229,7 +235,8 @@ public class RPSGamesResourceIntTest {
             .andExpect(jsonPath("$.isAI").value(DEFAULT_IS_AI.booleanValue()))
             .andExpect(jsonPath("$.gameStartTime").value(DEFAULT_GAME_START_TIME.toString()))
             .andExpect(jsonPath("$.lastActionTime").value(DEFAULT_LAST_ACTION_TIME.toString()))
-            .andExpect(jsonPath("$.isGameFinished").value(DEFAULT_IS_GAME_FINISHED.booleanValue()));
+            .andExpect(jsonPath("$.isGameFinished").value(DEFAULT_IS_GAME_FINISHED.booleanValue()))
+            .andExpect(jsonPath("$.isRoundFinished").value(DEFAULT_IS_ROUND_FINISHED.booleanValue()));
     }
 
     @Test
@@ -263,7 +270,8 @@ public class RPSGamesResourceIntTest {
             .isAI(UPDATED_IS_AI)
             .gameStartTime(UPDATED_GAME_START_TIME)
             .lastActionTime(UPDATED_LAST_ACTION_TIME)
-            .isGameFinished(UPDATED_IS_GAME_FINISHED);
+            .isGameFinished(UPDATED_IS_GAME_FINISHED)
+            .isRoundFinished(UPDATED_IS_ROUND_FINISHED);
 
         restRPSGamesMockMvc.perform(put("/api/rps-games")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -286,6 +294,7 @@ public class RPSGamesResourceIntTest {
         assertThat(testRPSGames.getGameStartTime()).isEqualTo(UPDATED_GAME_START_TIME);
         assertThat(testRPSGames.getLastActionTime()).isEqualTo(UPDATED_LAST_ACTION_TIME);
         assertThat(testRPSGames.isIsGameFinished()).isEqualTo(UPDATED_IS_GAME_FINISHED);
+        assertThat(testRPSGames.isIsRoundFinished()).isEqualTo(UPDATED_IS_ROUND_FINISHED);
     }
 
     @Test

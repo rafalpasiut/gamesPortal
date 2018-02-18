@@ -29,6 +29,7 @@
             <th><span>Game Start Time</span></th>
             <th><span>Last Action Time</span></th>
             <th><span>Is Game Finished</span></th>
+            <th><span>Is Round Finished</span></th>
             <th></th>
             </tr>
             </thead>
@@ -47,6 +48,7 @@
                 <td>{{rPSGames.gameStartTime | date:'medium'}}</td>
                 <td>{{rPSGames.lastActionTime | date:'medium'}}</td>
                 <td>{{rPSGames.isGameFinished}}</td>
+                <td>{{rPSGames.isRoundFinished}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

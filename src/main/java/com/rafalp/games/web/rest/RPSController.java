@@ -22,7 +22,7 @@ public class RPSController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/rpsFightMulti")
-    public RPSFightResult fight(@RequestBody PlayerMoveDto playerData) throws CantCreateChampionException {
-        return null;
+    public void fight(@RequestBody PlayerMoveDto playerData) throws CantCreateChampionException {
+        webRPSGame.playMulti(playerData);
     }
 }

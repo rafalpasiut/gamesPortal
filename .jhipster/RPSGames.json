@@ -49,6 +49,10 @@
         {
             "fieldName": "isGameFinished",
             "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "isRoundFinished",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20180218174349",

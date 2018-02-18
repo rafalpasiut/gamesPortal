@@ -15,10 +15,12 @@ export class RPSGames implements BaseEntity {
         public gameStartTime?: any,
         public lastActionTime?: any,
         public isGameFinished?: boolean,
+        public isRoundFinished?: boolean,
     ) {
         this.player1IsPlayed = false;
         this.player2IsPlayed = false;
         this.isAI = false;
         this.isGameFinished = false;
+        this.isRoundFinished = false;
     }
 }

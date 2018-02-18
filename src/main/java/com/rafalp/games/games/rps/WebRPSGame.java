@@ -4,11 +4,14 @@ import com.rafalp.games.domain.RPSGames;
 import com.rafalp.games.games.rps.exception.CantCreateChampionException;
 import com.rafalp.games.repository.RPSGamesRepository;
 import com.rafalp.games.service.dto.RPSGame.PlayerMoveDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class WebRPSGame extends Game {
 
+    public static final int GAMES_TO_WIN = 3;
+    @Autowired
     private RPSGamesRepository rpsGamesRepository;
 
     public WebRPSGame() {
@@ -21,10 +24,10 @@ public class WebRPSGame extends Game {
         FightResult fightResult = fight(playerChampion, aIChampion);
         String message = gameMaster.fightResult(fightResult, playerChampion, aIChampion);
 
-        return new RPSFightResult(playerChampion.getName(), aIChampion.getName(), fightResult.toString(), message, true);
+        return new RPSFightResult(playerChampion.getName(), aIChampion.getName(), fightResult.toString(), message, true, true);
     }
 
-    public void playMulti(PlayerMoveDto playerMove) {
+    public void playMulti(PlayerMoveDto playerMove) throws CantCreateChampionException {
         if (rpsGamesRepository.findByPlayer1(playerMove.getPlayerID()) != null) {
             rpsGamesRepository.updatePlayer1Game(playerMove.getPlayerID(), playerMove.getChampionName());
         } else if (rpsGamesRepository.findByPlayer2(playerMove.getPlayerID()) != null) {
@@ -37,10 +40,61 @@ public class WebRPSGame extends Game {
                 rpsGamesRepository.save(new RPSGames(playerMove.getPlayerID(), playerMove.getChampionName(), true, playerMove.getFightWithAI())); //TODO add times handling
             }
         }
+        if (isFightReady(playerMove.getPlayerID())) {
+            RPSGames rpsGames = rpsGamesRepository.findByPlayer1OrPlayer2(playerMove.getPlayerID(),playerMove.getPlayerID());
+            Champion playerChampion1 = createChampionFromString(rpsGames.getPlayer1Champion());
+            Champion playerChampion2 = createChampionFromString(rpsGames.getPlayer2Champion());
+            FightResult fightResult = fight(playerChampion1, playerChampion2);
+            rpsGames = resolveFightResult(rpsGames, fightResult);
+            rpsGamesRepository.save(rpsGames);
+        }
     }
 
-    public FightResult getFightStatus(String playerName){
+    public RPSFightResult getFightStatus(String playerName) {
+        RPSFightResult fightResult;
+        RPSGames game = rpsGamesRepository.findByPlayer1OrPlayer2(playerName, playerName);
+        if(game!=null){
+            if(rpsGamesRepository.findByPlayer1(playerName) !=null){
+                game.setPlayer1IsPlayed(false);
+            } else {
+                game.setPlayer2IsPlayed(false);
+            }
+            if(game.isPlayer1IsPlayed() && game.isPlayer2IsPlayed()){
+                game.setIsRoundFinished(false);
+            }
+        }
+        return null;
+    }
 
+    private RPSGames resolveFightResult(RPSGames game, FightResult result) {
+        switch (result) {
+            case WIN:
+                if (game.getPlayer1Count() != null) {
+                    game.setPlayer1Count(game.getPlayer1Count() + 1);
+                } else {
+                    game.setPlayer1Count(1);
+                }
+                break;
+            case LOSE:
+                if (game.getPlayer2Count() != null) {
+                    game.setPlayer2Count(game.getPlayer2Count() + 1);
+                } else {
+                    game.setPlayer2Count(1);
+                }
+                break;
+            case TIE:
+                break;
+        }
+        game.setIsRoundFinished(true);
+        if(game.getPlayer1Count()>= GAMES_TO_WIN || game.getPlayer2Count()>=GAMES_TO_WIN){
+            game.setIsGameFinished(true);
+        }
+        return game;
+    }
+
+
+    private Boolean isFightReady(String playerName) {
+        return rpsGamesRepository.isFightReady(playerName) != null;
     }
 
     private Champion createChampionFromString(String champion) throws CantCreateChampionException {

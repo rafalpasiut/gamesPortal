@@ -12,6 +12,9 @@ public class PlayerMoveDto {
         this.playerID = playerID;
     }
 
+    public PlayerMoveDto() {
+    }
+
     public String getChampionName() {
         return championName;
     }

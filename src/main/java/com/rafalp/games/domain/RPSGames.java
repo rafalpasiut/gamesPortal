@@ -60,7 +60,26 @@ public class RPSGames implements Serializable {
     @Column(name = "is_game_finished")
     private Boolean isGameFinished;
 
+    @Column(name = "is_round_finished")
+    private Boolean isRoundFinished;
+
     public RPSGames() {
+    }
+
+    public RPSGames(String player1, String player1Champion, Integer player1Count, Boolean player1IsPlayed, String player2, String player2Champion, Integer player2Count, Boolean player2IsPlayed, Boolean isAI, Instant gameStartTime, Instant lastActionTime, Boolean isGameFinished, Boolean isRoundFinished) {
+        this.player1 = player1;
+        this.player1Champion = player1Champion;
+        this.player1Count = player1Count;
+        this.player1IsPlayed = player1IsPlayed;
+        this.player2 = player2;
+        this.player2Champion = player2Champion;
+        this.player2Count = player2Count;
+        this.player2IsPlayed = player2IsPlayed;
+        this.isAI = isAI;
+        this.gameStartTime = gameStartTime;
+        this.lastActionTime = lastActionTime;
+        this.isGameFinished = isGameFinished;
+        this.isRoundFinished = isRoundFinished;
     }
 
     public RPSGames(String player1, String player1Champion, Boolean player1IsPlayed, Boolean isAI) {
@@ -234,6 +253,19 @@ public class RPSGames implements Serializable {
     public void setIsGameFinished(Boolean isGameFinished) {
         this.isGameFinished = isGameFinished;
     }
+
+    public Boolean isIsRoundFinished() {
+        return isRoundFinished;
+    }
+
+    public RPSGames isRoundFinished(Boolean isRoundFinished) {
+        this.isRoundFinished = isRoundFinished;
+        return this;
+    }
+
+    public void setIsRoundFinished(Boolean isRoundFinished) {
+        this.isRoundFinished = isRoundFinished;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -272,6 +304,7 @@ public class RPSGames implements Serializable {
             ", gameStartTime='" + getGameStartTime() + "'" +
             ", lastActionTime='" + getLastActionTime() + "'" +
             ", isGameFinished='" + isIsGameFinished() + "'" +
+            ", isRoundFinished='" + isIsRoundFinished() + "'" +
             "}";
     }
 }
