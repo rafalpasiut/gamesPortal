@@ -28,5 +28,8 @@ entity RPSGames
     lastActionTime Instant,
     isGameFinished Boolean,
     isRoundFinished Boolean,
+    message String,
+    player1Win Boolean,
+    player2Win Boolean,
 }
 

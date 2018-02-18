@@ -87,6 +87,11 @@ public class RPSGames implements Serializable {
         this.player1Champion = player1Champion;
         this.player1IsPlayed = player1IsPlayed;
         this.isAI = isAI;
+        player1Count = 0;
+        player2Count = 0;
+        player2IsPlayed = false;
+        isGameFinished = false;
+        isRoundFinished = false;
     }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
