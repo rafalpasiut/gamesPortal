@@ -81,6 +81,21 @@
             <input type="checkbox" class="form-control" name="isRoundFinished" id="field_isRoundFinished"
                 [(ngModel)]="rPSGames.isRoundFinished" />
         </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_message">Message</label>
+            <input type="text" class="form-control" name="message" id="field_message"
+                [(ngModel)]="rPSGames.message" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_player1Win">Player 1 Win</label>
+            <input type="checkbox" class="form-control" name="player1Win" id="field_player1Win"
+                [(ngModel)]="rPSGames.player1Win" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_player2Win">Player 2 Win</label>
+            <input type="checkbox" class="form-control" name="player2Win" id="field_player2Win"
+                [(ngModel)]="rPSGames.player2Win" />
+        </div>
 
     </div>
     <div class="modal-footer">

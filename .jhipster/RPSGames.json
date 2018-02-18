@@ -53,6 +53,18 @@
         {
             "fieldName": "isRoundFinished",
             "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "message",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "player1Win",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "player2Win",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20180218174349",

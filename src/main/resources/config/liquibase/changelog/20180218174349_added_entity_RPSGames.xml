@@ -73,6 +73,18 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="message" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="player_1_win" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="player_2_win" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="rps_games" columnName="game_start_time" columnDataType="datetime"/>

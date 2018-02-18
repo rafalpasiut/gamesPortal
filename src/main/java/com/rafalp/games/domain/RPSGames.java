@@ -1,10 +1,11 @@
 package com.rafalp.games.domain;
 
+import com.rafalp.games.games.rps.FightResult;
+import com.rafalp.games.games.rps.RPSFightResult;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
@@ -63,6 +64,15 @@ public class RPSGames implements Serializable {
     @Column(name = "is_round_finished")
     private Boolean isRoundFinished;
 
+    @Column(name = "message")
+    private String message;
+
+    @Column(name = "player_1_win")
+    private Boolean player1Win;
+
+    @Column(name = "player_2_win")
+    private Boolean player2Win;
+
     public RPSGames() {
     }
 
@@ -92,6 +102,33 @@ public class RPSGames implements Serializable {
         player2IsPlayed = false;
         isGameFinished = false;
         isRoundFinished = false;
+        message = "";
+        player1Win = false;
+        player2Win = false;
+    }
+
+    public RPSFightResult getFightResultForPlayer(String player) {
+        if (player.equals(player1)) {
+            FightResult fightResult;
+            if (player1Win == true) {
+                fightResult = FightResult.WIN;
+            } else if (player1Win == false && player2Win == false) {
+                fightResult = FightResult.TIE;
+            } else {
+                fightResult = FightResult.LOSE;
+            }
+            return new RPSFightResult(player1Champion, player2Champion, fightResult.toString(), message, isRoundFinished, isGameFinished);
+        } else {
+            FightResult fightResult;
+            if (player2Win == true) {
+                fightResult = FightResult.WIN;
+            } else if (player1Win == false && player2Win == false) {
+                fightResult = FightResult.TIE;
+            } else {
+                fightResult = FightResult.LOSE;
+            }
+            return new RPSFightResult(player2Champion, player1Champion, fightResult.toString(), message, isRoundFinished, isGameFinished);
+        }
     }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -271,6 +308,45 @@ public class RPSGames implements Serializable {
     public void setIsRoundFinished(Boolean isRoundFinished) {
         this.isRoundFinished = isRoundFinished;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public RPSGames message(String message) {
+        this.message = message;
+        return this;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Boolean isPlayer1Win() {
+        return player1Win;
+    }
+
+    public RPSGames player1Win(Boolean player1Win) {
+        this.player1Win = player1Win;
+        return this;
+    }
+
+    public void setPlayer1Win(Boolean player1Win) {
+        this.player1Win = player1Win;
+    }
+
+    public Boolean isPlayer2Win() {
+        return player2Win;
+    }
+
+    public RPSGames player2Win(Boolean player2Win) {
+        this.player2Win = player2Win;
+        return this;
+    }
+
+    public void setPlayer2Win(Boolean player2Win) {
+        this.player2Win = player2Win;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -310,6 +386,9 @@ public class RPSGames implements Serializable {
             ", lastActionTime='" + getLastActionTime() + "'" +
             ", isGameFinished='" + isIsGameFinished() + "'" +
             ", isRoundFinished='" + isIsRoundFinished() + "'" +
+            ", message='" + getMessage() + "'" +
+            ", player1Win='" + isPlayer1Win() + "'" +
+            ", player2Win='" + isPlayer2Win() + "'" +
             "}";
     }
 }

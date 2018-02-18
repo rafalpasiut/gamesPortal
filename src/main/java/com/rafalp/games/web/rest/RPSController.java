@@ -25,4 +25,9 @@ public class RPSController {
     public void fight(@RequestBody PlayerMoveDto playerData) throws CantCreateChampionException {
         webRPSGame.playMulti(playerData);
     }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/rpsGetFightStatus")
+    public RPSFightResult getFightStatus(@RequestParam String player) {
+        return webRPSGame.getFightStatus(player);
+    }
 }

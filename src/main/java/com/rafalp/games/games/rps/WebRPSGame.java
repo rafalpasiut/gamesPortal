@@ -41,32 +41,33 @@ public class WebRPSGame extends Game {
             }
         }
         if (isFightReady(playerMove.getPlayerID())) {
-            RPSGames rpsGames = rpsGamesRepository.findByPlayer1OrPlayer2(playerMove.getPlayerID(),playerMove.getPlayerID());
+            RPSGames rpsGames = rpsGamesRepository.findByPlayer1OrPlayer2(playerMove.getPlayerID(), playerMove.getPlayerID());
             Champion playerChampion1 = createChampionFromString(rpsGames.getPlayer1Champion());
             Champion playerChampion2 = createChampionFromString(rpsGames.getPlayer2Champion());
             FightResult fightResult = fight(playerChampion1, playerChampion2);
-            rpsGames = resolveFightResult(rpsGames, fightResult);
+            rpsGames = resolveFightResult(rpsGames, fightResult, playerChampion1, playerChampion2);
             rpsGamesRepository.save(rpsGames);
         }
     }
 
     public RPSFightResult getFightStatus(String playerName) {
         RPSFightResult fightResult;
-        RPSGames game = rpsGamesRepository.findByPlayer1OrPlayer2(playerName, playerName);
-        if(game!=null){
-            if(rpsGamesRepository.findByPlayer1(playerName) !=null){
+        RPSGames game = rpsGamesRepository.findByPlayer1OrPlayer2AndIsRoundFinished(playerName, playerName, true);
+        if (game != null) {
+            if (rpsGamesRepository.findByPlayer1(playerName) != null) {
                 game.setPlayer1IsPlayed(false);
             } else {
                 game.setPlayer2IsPlayed(false);
             }
-            if(game.isPlayer1IsPlayed() && game.isPlayer2IsPlayed()){
+            if (!game.isPlayer1IsPlayed() && !game.isPlayer2IsPlayed()) {
                 game.setIsRoundFinished(false);
             }
         }
-        return null;
+        rpsGamesRepository.save(game);
+        return game.getFightResultForPlayer(playerName);
     }
 
-    private RPSGames resolveFightResult(RPSGames game, FightResult result) {
+    private RPSGames resolveFightResult(RPSGames game, FightResult result, Champion player1, Champion player2) {
         switch (result) {
             case WIN:
                 if (game.getPlayer1Count() != null) {
@@ -74,6 +75,7 @@ public class WebRPSGame extends Game {
                 } else {
                     game.setPlayer1Count(1);
                 }
+                game.setPlayer1Win(true);
                 break;
             case LOSE:
                 if (game.getPlayer2Count() != null) {
@@ -81,12 +83,14 @@ public class WebRPSGame extends Game {
                 } else {
                     game.setPlayer2Count(1);
                 }
+                game.setPlayer2Win(true);
                 break;
             case TIE:
                 break;
         }
+        game.setMessage(gameMaster.fightResult(result, player1, player2));
         game.setIsRoundFinished(true);
-        if(game.getPlayer1Count()>= GAMES_TO_WIN || game.getPlayer2Count()>=GAMES_TO_WIN){
+        if (game.getPlayer1Count() >= GAMES_TO_WIN || game.getPlayer2Count() >= GAMES_TO_WIN) {
             game.setIsGameFinished(true);
         }
         return game;

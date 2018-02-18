@@ -25,6 +25,8 @@ public interface RPSGamesRepository extends JpaRepository<RPSGames, Long> {
 
     RPSGames findByPlayer1AndPlayer2(String player1, String player2);
 
+    RPSGames findByPlayer1OrPlayer2AndIsRoundFinished(String player, String player2, Boolean isRoundFinished);
+
     RPSGames findByPlayer1OrPlayer2(String player, String player2);
 
     @Modifying
