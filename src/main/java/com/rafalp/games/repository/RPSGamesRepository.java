@@ -27,17 +27,21 @@ public interface RPSGamesRepository extends JpaRepository<RPSGames, Long> {
 
     RPSGames findByPlayer1OrPlayer2AndIsRoundFinished(String player, String player2, Boolean isRoundFinished);
 
+    RPSGames findByPlayer1AndIsRoundFinished(String player, Boolean isRoundFinished);
+
     RPSGames findByPlayer1OrPlayer2(String player, String player2);
+
+    Boolean existsByPlayer1AndPlayer1IsPlayed(String player, Boolean isPlayed);
 
     @Modifying
     void deleteByPlayer1AndPlayer2AndPlayer1IsPlayedAndPlayer2IsPlayed(String player1, String player2, Boolean player1IsPlayed, Boolean player2IsPlayed);
 
     @Modifying
-    @Query(value = "UPDATE RPSGames set player1Champion = :CHAMPION, player1IsPlayed = TRUE WHERE player1 = :PLAYER AND player1IsPlayed = false")
+    @Query(value = "UPDATE RPSGames set player1Champion = :CHAMPION, player1IsPlayed = TRUE WHERE player1 = :PLAYER AND isRoundFinished = false")
     void updatePlayer1Game(@Param("PLAYER") String player, @Param("CHAMPION") String champion);
 
     @Modifying
-    @Query(value = "UPDATE RPSGames set player2Champion = :CHAMPION, player2IsPlayed = TRUE WHERE player2 = :PLAYER AND player2IsPlayed = false")
+    @Query(value = "UPDATE RPSGames set player2Champion = :CHAMPION, player2IsPlayed = TRUE WHERE player2 = :PLAYER AND isRoundFinished = false")
     void updatePlayer2Game(@Param("PLAYER") String player, @Param("CHAMPION") String champion);
 
     @Query(value = "From RPSGames where player1IsPlayed = true AND player2IsPlayed = true AND isRoundFinished = false AND (player1 = :PLAYER OR player2 = :PLAYER)")

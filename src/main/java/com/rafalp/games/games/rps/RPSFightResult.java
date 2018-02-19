@@ -10,17 +10,21 @@ public class RPSFightResult {
     String fightMessage;
     Boolean isRoundFinished;
     Boolean isGameFinished;
+    Integer winCount;
+    Integer looseCount;
 
     public RPSFightResult() {
     }
 
-    public RPSFightResult(String userChampion, String opponentChampion, String fightResult, String fightMessage, Boolean isRoundFinished, Boolean isGameFinished) {
+    public RPSFightResult(String userChampion, String opponentChampion, String fightResult, String fightMessage, Boolean isRoundFinished, Boolean isGameFinished, Integer winCount, Integer looseCount) {
         this.userChampion = userChampion;
         this.opponentChampion = opponentChampion;
         this.fightResult = fightResult;
         this.fightMessage = fightMessage;
         this.isRoundFinished = isRoundFinished;
         this.isGameFinished = isGameFinished;
+        this.winCount = winCount;
+        this.looseCount = looseCount;
     }
 
     public String getUserChampion() {
@@ -47,6 +51,14 @@ public class RPSFightResult {
         return isGameFinished;
     }
 
+    public Integer getWinCount() {
+        return winCount;
+    }
+
+    public Integer getLooseCount() {
+        return looseCount;
+    }
+
     public void setUserChampion(String userChampion) {
         this.userChampion = userChampion;
     }
@@ -69,5 +81,13 @@ public class RPSFightResult {
 
     public void setGameFinished(Boolean gameFinished) {
         isGameFinished = gameFinished;
+    }
+
+    public void setWinCount(Integer winCount) {
+        this.winCount = winCount;
+    }
+
+    public void setLooseCount(Integer looseCount) {
+        this.looseCount = looseCount;
     }
 }

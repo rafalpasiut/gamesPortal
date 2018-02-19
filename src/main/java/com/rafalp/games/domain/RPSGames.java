@@ -117,7 +117,7 @@ public class RPSGames implements Serializable {
             } else {
                 fightResult = FightResult.LOSE;
             }
-            return new RPSFightResult(player1Champion, player2Champion, fightResult.toString(), message, isRoundFinished, isGameFinished);
+            return new RPSFightResult(player1Champion, player2Champion, fightResult.toString(), message, isRoundFinished, isGameFinished, player1Count, player2Count);
         } else {
             FightResult fightResult;
             if (player2Win == true) {
@@ -127,7 +127,7 @@ public class RPSGames implements Serializable {
             } else {
                 fightResult = FightResult.LOSE;
             }
-            return new RPSFightResult(player2Champion, player1Champion, fightResult.toString(), message, isRoundFinished, isGameFinished);
+            return new RPSFightResult(player2Champion, player1Champion, fightResult.toString(), message, isRoundFinished, isGameFinished, player2Count, player1Count);
         }
     }
 
